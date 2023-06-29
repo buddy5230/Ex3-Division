@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Reward from "./Reward";
 
 type CheckNumberProps = {
@@ -126,7 +126,6 @@ const CheckNumber: React.FC<CheckNumberProps> = ({ numbers }) => {
       setReward2(reward4 - count3);
     }
     //console.log(twoend.slice(1) ===numbers[6]);
-
     if (twoend.slice(1) === numbers[6]) {
       if (
         !twoend.includes(numbers[0]) &&
@@ -137,19 +136,19 @@ const CheckNumber: React.FC<CheckNumberProps> = ({ numbers }) => {
         !twoend.includes(numbers[5]) &&
         reward4 !== 0
       ) {
-        ms.push(`${twoend} ถูกรางวัลเลขท้าย 2 ตัว`);
         setTwonumber(twoend)
+        ms.push(`${twoend} ถูกรางวัลเลขท้าย 2 ตัว`);
         setReward4(reward4 - 1);
       }
-      
       if (twonumber === twoend &&
         reward4 === 0
       ) {
         ms.push(`${twoend} ถูกรางวัลเลขท้าย 2 ตัว`);
       }
     }
-    console.log("twoend",twoend)
+    console.log(reward4)
     for (let z of inputNumbers){
+      console.log("reward4",reward4)
       if (
         !z.includes(numbers[0]) &&
         !z.includes(numbers[1]) &&
@@ -157,14 +156,13 @@ const CheckNumber: React.FC<CheckNumberProps> = ({ numbers }) => {
         !z.includes(numbers[3]) &&
         !z.includes(numbers[4]) &&
         !z.includes(numbers[5])&&
-        z !== twonumber
-        
+        z!==twoend
       ) {
         ms.push(`${z} ไม่ถูกรางวัลอะไรเลย`);
       }
-    }
       
-
+    }
+    
     if (reward1 === 0) {
       ms.push("");
     }
