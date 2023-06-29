@@ -13,6 +13,7 @@ const CheckNumber: React.FC<CheckNumberProps> = ({ numbers }) => {
   const [reward2, setReward2] = useState<number>(2);
   const [reward3, setReward3] = useState<number>(3);
   const [reward4, setReward4] = useState<number>(1);
+  const [twonumber, setTwonumber] = useState("");
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
@@ -39,7 +40,7 @@ const CheckNumber: React.FC<CheckNumberProps> = ({ numbers }) => {
         return;
       }
     }
-    
+
     let ms: string[] = []; //เก็บข้อความเเสดงผล
     const clone: string[] = inputNumbers;
     let replace = 0;
@@ -69,9 +70,7 @@ const CheckNumber: React.FC<CheckNumberProps> = ({ numbers }) => {
     if (inputNumbers.includes(numbers[1]) && numbers[1] !== twoend) {
       ms.push(`${numbers[1]} ถูกรางวัลเลขข้างเคียงรางวัลที่ 1`);
       count0 += 1;
-    } else if (
-      inputNumbers.includes(numbers[1]) && numbers[1] === twoend)
-     {
+    } else if (inputNumbers.includes(numbers[1]) && numbers[1] === twoend) {
       ms.push(
         `${numbers[1]} ถูกรางวัลเลขข้างเคียงรางวัลที่ 1 เเละถูกรางวัลเลขท้าย 2 ตัว`
       );
@@ -81,10 +80,7 @@ const CheckNumber: React.FC<CheckNumberProps> = ({ numbers }) => {
     if (inputNumbers.includes(numbers[2]) && numbers[2] !== twoend) {
       ms.push(`${numbers[2]} ถูกรางวัลเลขข้างเคียงรางวัลที่ 1`);
       count0 += 1;
-    } else if (
-      inputNumbers.includes(numbers[2]) &&
-      numbers[2] === twoend
-    ) {
+    } else if (inputNumbers.includes(numbers[2]) && numbers[2] === twoend) {
       ms.push(
         `${numbers[2]} ถูกรางวัลเลขข้างเคียงรางวัลที่ 1 เเละถูกรางวัลเลขท้าย 2 ตัว`
       );
@@ -92,7 +88,7 @@ const CheckNumber: React.FC<CheckNumberProps> = ({ numbers }) => {
     }
     console.log(count1);
     if (count0 > 0 && count0 <= 2) {
-      setReward2(reward1 - count0);
+      setReward2(reward2 - count0);
     } else if (count1 > 0 && count1 <= 2) {
       setReward2(reward2 - count1);
       setReward4(reward4 - count1);
@@ -103,10 +99,7 @@ const CheckNumber: React.FC<CheckNumberProps> = ({ numbers }) => {
     if (inputNumbers.includes(numbers[3]) && numbers[3] !== twoend) {
       ms.push(`${numbers[3]} ถูกรางวัลที่ 2 `);
       count2 += 1;
-    } else if (
-      inputNumbers.includes(numbers[3]) &&
-      numbers[3] === twoend
-    ) {
+    } else if (inputNumbers.includes(numbers[3]) && numbers[3] === twoend) {
       ms.push(`${numbers[3]} ถูกรางวัลที่ 2 เเละถูกรางวัลเลขท้าย 2 ตัว`);
       count3 += 1;
     }
@@ -114,10 +107,7 @@ const CheckNumber: React.FC<CheckNumberProps> = ({ numbers }) => {
     if (inputNumbers.includes(numbers[4]) && numbers[4] !== twoend) {
       ms.push(`${numbers[4]} ถูกรางวัลที่ 2 `);
       count2 += 1;
-    } else if (
-      inputNumbers.includes(numbers[4]) &&
-      numbers[4] === twoend
-    ) {
+    } else if (inputNumbers.includes(numbers[4]) && numbers[4] === twoend) {
       ms.push(`${numbers[4]} ถูกรางวัลที่ 2 เเละถูกรางวัลเลขท้าย 2 ตัว`);
       count3 += 1;
     }
@@ -125,10 +115,7 @@ const CheckNumber: React.FC<CheckNumberProps> = ({ numbers }) => {
     if (inputNumbers.includes(numbers[5]) && numbers[5] !== twoend) {
       ms.push(`${numbers[5]} ถูกรางวัลที่ 2 `);
       count2 += 1;
-    } else if (
-      inputNumbers.includes(numbers[5]) &&
-      numbers[5] === twoend
-    ) {
+    } else if (inputNumbers.includes(numbers[5]) && numbers[5] === twoend) {
       ms.push(`${numbers[5]} ถูกรางวัลที่ 2 เเละถูกรางวัลเลขท้าย 2 ตัว`);
       count3 += 1;
     }
@@ -138,21 +125,31 @@ const CheckNumber: React.FC<CheckNumberProps> = ({ numbers }) => {
       setReward2(reward3 - count3);
       setReward2(reward4 - count3);
     }
-    console.log(twoend.slice(1) ===numbers[6]);
-    if (twoend.slice(1) ===numbers[6]) {
+    //console.log(twoend.slice(1) ===numbers[6]);
+
+    if (twoend.slice(1) === numbers[6]) {
       if (
         !twoend.includes(numbers[0]) &&
         !twoend.includes(numbers[1]) &&
         !twoend.includes(numbers[2]) &&
         !twoend.includes(numbers[3]) &&
         !twoend.includes(numbers[4]) &&
-        !twoend.includes(numbers[5])
+        !twoend.includes(numbers[5]) &&
+        reward4 !== 0
       ) {
         ms.push(`${twoend} ถูกรางวัลเลขท้าย 2 ตัว`);
+        setTwonumber(twoend)
         setReward4(reward4 - 1);
       }
+      
+      if (twonumber === twoend &&
+        reward4 === 0
+      ) {
+        ms.push(`${twoend} ถูกรางวัลเลขท้าย 2 ตัว`);
+      }
     }
-    for(let z of inputNumbers)
+    console.log("twoend",twoend)
+    for (let z of inputNumbers){
       if (
         !z.includes(numbers[0]) &&
         !z.includes(numbers[1]) &&
@@ -160,11 +157,13 @@ const CheckNumber: React.FC<CheckNumberProps> = ({ numbers }) => {
         !z.includes(numbers[3]) &&
         !z.includes(numbers[4]) &&
         !z.includes(numbers[5])&&
-        z !== twoend
+        z !== twonumber
+        
       ) {
         ms.push(`${z} ไม่ถูกรางวัลอะไรเลย`);
       }
-    
+    }
+      
 
     if (reward1 === 0) {
       ms.push("");
@@ -173,9 +172,6 @@ const CheckNumber: React.FC<CheckNumberProps> = ({ numbers }) => {
       ms.push("");
     }
     if (reward3 === 0) {
-      ms.push("");
-    }
-    if (reward4 === 0) {
       ms.push("");
     }
 
