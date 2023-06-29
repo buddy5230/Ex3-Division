@@ -1,0 +1,13 @@
+.set-reward{
+    display: flex;
+    position: absolute;
+    color: #FF3300;
+}
+@media screen and (max-width: 1000px){
+    .set-reward{
+        display: flex;
+        flex-direction: column;
+        top: 100px;
+        color: #FF3300;
+    }
+}

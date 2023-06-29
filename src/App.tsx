@@ -1,24 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import Lottery from "./components/Lottery";
+import CheckNumber from "./components/CheckNumber";
+import Reward from "./components/Reward";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{fontFamily: "Arial"}}>
+      <nav className="bg-black text-center text-white pt-4 text-xl-center" style={{ height: "80px"}}>
+        <h3>รางวัลล็อตเตอรี่</h3>
+      </nav>
+      <div  style={{ marginTop: "150px"}}>
+        <Lottery />
+      </div>
     </div>
   );
 }
