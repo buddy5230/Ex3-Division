@@ -65,7 +65,7 @@ const Lottery = () => {
           ดำเนินการสุ่มรางวัล
         </button>
         {showNumber || numbers.length !== 0 ? null : (
-          <span className="ps-3 text-danger fs-4">กรุณากดปุ่มสุ่มตัวเลขก่อน!</span>
+          <span className="ps-3 text-danger fs-4">กรุณากดปุ่มดำเนินการสุ่มรางวัลก่อน!</span>
         )}
         <div className="row text-center">
           <div className="col-6 border border-secondary p-2 bg-black text-white">
